@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
 import Image from "next/image";
+import { Blog } from "@/types";
 
-export default function BlogCard({ post }: { post: any }) {
+export default function BlogCard({ post }: { post: Blog }) {
   return (
     <Link
       href={`/blogs/${post.id}`}
