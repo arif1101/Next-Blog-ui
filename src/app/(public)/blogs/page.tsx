@@ -2,6 +2,24 @@ import BlogCard from '@/components/modules/Blogs/BlogCard';
 import { Blog } from '@/types';
 import React from 'react'
 
+
+export const generateMetadata = async ({
+  params
+}: {
+  params: Promise<{blogId: string}>
+}) => {
+  const {blogId}=await params;
+  const res = await  fetch(`${process.env.NEXT_PUBLIC_BASE_API}/post/${blogId}`);
+  const blog = await res.json();
+
+  return {
+    title: blog?.title,
+    description: blog?.content
+  }
+}
+
+
+
 export default async function page() {
 
   const  res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/post`, {
